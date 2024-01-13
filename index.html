@@ -8,10 +8,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-
   </head>
   <body>
-    <div id="app">
+    <div id="app" class="h-screen flex flex-col justify-center items-center">
+      <h1 class="text-5xl font-bold">[ Hangman Game ]</h1>
+      <div id="game" class="mt-10 flex flex-col items-center">
+        <button id="startGame" class="bg-slate-200 rounded-md font-medium px-5 py-2">PLAY</button>
+      </div>
     </div>
     <script type="module" src="./src/js/main.js"></script>
   </body>
