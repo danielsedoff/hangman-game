@@ -26,3 +26,21 @@
         font-family: Akzidenz, system-ui, sans-serif;
     }
 }
+
+@layer components{
+    #app {
+        @apply h-screen flex flex-col justify-center items-center dark:bg-zinc-800 dark:text-white
+    }
+
+    .start-button {
+       @apply bg-slate-200 hover:bg-slate-300 rounded-md font-medium px-5 py-2 dark:text-black dark:bg-indigo-500 dark:hover:bg-indigo-600
+    }
+
+    .logo {
+        @apply text-2xl sm:text-4xl md:text-5xl font-bold
+    }
+
+    .game-div {
+        @apply mt-10 flex flex-col items-center
+    }
+}
