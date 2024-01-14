@@ -8,5 +8,7 @@ const randomInt = (min, max) => {
 export const startGame = _ => {
     const randomIndex = randomInt(0, WORDS.length - 1)
     const wordToGuess = WORDS[randomIndex]
+    sessionStorage.setItem('wordToGuess', wordToGuess)
+
     alert(wordToGuess)
 }
