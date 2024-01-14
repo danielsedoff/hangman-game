@@ -7,10 +7,18 @@ const randomInt = (min, max) => {
     return Math.floor(rand);
   }
 
+const getPlaceholders = str => {
+    let result = ''
+    for (let i = 0; i < str.length; ++i){
+        result += `<h1 id="letter_${i}" class="letter">_</h1>`
+    }
+    return result
+}
+
 export const startGame = _ => {
     const randomIndex = randomInt(0, WORDS.length - 1)
     const wordToGuess = WORDS[randomIndex]
     sessionStorage.setItem('wordToGuess', wordToGuess)
 
-    gameDiv.innerHTML = `<h1>${wordToGuess}</h1>`
+    gameDiv.innerHTML = `<h1>${getPlaceholders(wordToGuess)}</h1>`
 }

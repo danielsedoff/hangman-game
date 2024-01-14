@@ -43,4 +43,8 @@
     .game-div {
         @apply mt-10 flex flex-col items-center
     }
+
+    .letter {
+        @apply mx-2 text-3xl font-medium 
+    }
 }
