@@ -20,3 +20,5 @@ toggleDark.addEventListener('click', _ => {
 localStorage.setItem('onlyStringsAreSaved', JSON.stringify({key:'value'})) // F12 -> Application -> Local Storage
 const objectFromLocalStorage = JSON.parse(localStorage.getItem('onlyStringsAreSaved'))
 
+const startButton = document.querySelectorAll('#startGame')[0]
+startButton.addEventListener('click', _ => alert())
