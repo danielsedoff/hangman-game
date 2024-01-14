@@ -47,4 +47,8 @@
     .letter {
         @apply mx-2 text-3xl font-medium 
     }
+
+    .placeholder-wrapper {
+        @apply flex flex-row
+    }
 }

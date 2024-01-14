@@ -12,7 +12,7 @@ const getPlaceholders = str => {
     for (let i = 0; i < str.length; ++i){
         result += `<h1 id="letter_${i}" class="letter">_</h1>`
     }
-    return result
+    return `<div id="placeholders" class="placeholder-wrapper">${result}</div>`
 }
 
 export const startGame = _ => {
