@@ -1,0 +1,1 @@
+export const WORDS = ['hello', 'everyone', 'beer']
