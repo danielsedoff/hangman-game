@@ -55,4 +55,12 @@
     .button-primary {
         @apply bg-slate-200 hover:bg-slate-300 rounded-md font-medium px-5 py-2 dark:text-black dark:bg-indigo-500 dark:hover:bg-indigo-600
      }
+
+     .keyboard {
+        @apply max-w-2xl mt-5 flex justify-center flex-wrap;
+     }
+
+     .keyboard-button {
+        @apply w-10 h-10 sm:w-14 sm:h-14 m-1 sm:m-2;
+     }
 }

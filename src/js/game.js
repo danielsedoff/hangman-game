@@ -16,13 +16,14 @@ const createPlaceholders = str => {
     return `<div id="placeholders" class="placeholder-wrapper">${placeholders}</div>`
 }
 
+
 const createKeyboard = () => {
     let keyboard = document.createElement('div')
     keyboard.classList.add('keyboard')
     keyboard.id = 'keyboard'
 
     const keyboardHTML = KEYBOARD_LETTERS.reduce((acc, curr) => {
-        let button = `<button class="button-primary" id="${curr}">${curr}</button>`
+        let button = `<button class="button-primary keyboard-button" onclick="keyboardPressed('${curr}')" id="${curr}">${curr}</button>`
         return acc + button
     }, '')
 
