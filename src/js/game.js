@@ -8,17 +8,21 @@ const randomInt = (min, max) => {
   }
 
 const getPlaceholders = str => {
-    let result = ''
-    for (let i = 0; i < str.length; ++i){
-        result += `<h1 id="letter_${i}" class="letter">_</h1>`
-    }
-    return `<div id="placeholders" class="placeholder-wrapper">${result}</div>`
+    let placeholders = Array.from('_'.repeat(str.length)).reduce((acc, curr, i) => {
+        return acc + `<h1 id="letter_${i}" class="letter">_</h1>`
+    }, '')
+
+    return `<div id="placeholders" class="placeholder-wrapper">${placeholders}</div>`
 }
 
-export const startGame = _ => {
+const createGameDiv = () => {
     const randomIndex = randomInt(0, WORDS.length - 1)
     const wordToGuess = WORDS[randomIndex]
     sessionStorage.setItem('wordToGuess', wordToGuess)
+    return `<h1>${getPlaceholders(wordToGuess)}</h1>`
+}
 
-    gameDiv.innerHTML = `<h1>${getPlaceholders(wordToGuess)}</h1>`
+
+export const startGame = _ => {
+    gameDiv.innerHTML = createGameDiv()
 }
