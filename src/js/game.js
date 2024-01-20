@@ -23,7 +23,7 @@ const createKeyboard = () => {
     keyboard.id = 'keyboard'
 
     const keyboardHTML = KEYBOARD_LETTERS.reduce((acc, curr) => {
-        let button = `<button class="button-primary keyboard-button" onclick="keyboardPressed('${curr}')" id="${curr}">${curr}</button>`
+        let button = `<button class="button-primary keyboard-button" id="${curr}">${curr}</button>`
         return acc + button
     }, '')
 
@@ -43,5 +43,9 @@ const createGameDiv = () => {
 export const startGame = _ => {
     gameDiv.innerHTML = createGameDiv()
     // gameDiv.innerHTML += createKeyboad | yields [object HTMLDivElement]
-    gameDiv.appendChild(createKeyboard())
+    let keyb = createKeyboard()
+    keyb.addEventListener('click', (event) => {
+        console.log(event.target.innerHTML);
+    })
+    gameDiv.appendChild(keyb)
 }
