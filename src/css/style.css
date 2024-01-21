@@ -53,7 +53,7 @@
     }
 
     .button-primary {
-        @apply bg-slate-200 hover:bg-slate-300 rounded-md font-medium px-5 py-2 dark:text-black dark:bg-indigo-500 dark:hover:bg-indigo-600
+        @apply flex justify-center bg-slate-200 hover:bg-slate-300 rounded-md font-medium px-5 py-2 dark:text-black dark:bg-indigo-500 dark:hover:bg-indigo-600
      }
 
      .keyboard {
@@ -66,5 +66,9 @@
 
      .hangman-img {
         @apply w-32 h-32 sm:w-60 sm:h-60;
+     }
+
+     .logo-sm {
+        @apply text-xl
      }
 }

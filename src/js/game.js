@@ -1,6 +1,7 @@
 import { WORDS, KEYBOARD_LETTERS } from "./constants"
 
 const gameDiv = document.querySelectorAll('#game')[0]
+const LogoHeader = document.getElementById('logo')
 
 // Produce a pseudorandom integer in the given range
 const randomInt = (min, max) => {
@@ -55,6 +56,8 @@ const createAttemptDiv = (num) => {
 
 // This function is called on click.
 export const startGame = _ => {
+    LogoHeader.classList.add('logo-sm')
+
     gameDiv.innerHTML = createGameDiv()
 
     gameDiv.innerHTML += createAttemptDiv(10)
@@ -67,6 +70,6 @@ export const startGame = _ => {
     gameDiv.appendChild(keyb)
 
 
-    let hangmanImg = createHangmanImg(3)
-    gameDiv.appendChild(hangmanImg)
+    let hangmanImg = createHangmanImg(0)
+    gameDiv.prepend(hangmanImg)
 }
