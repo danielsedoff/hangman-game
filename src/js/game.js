@@ -39,9 +39,16 @@ const createGameDiv = () => {
     return (`<h1>${createPlaceholders(wordToGuess)}</h1>`)
 }
 
+const createAttemptDiv = (num) => {
+    return `<p id="attempts" class="mt-2">ATTEMPTS LEFT: <span id="attempts-left" class="font-medium text-red-600">${num}</span></p>`
+}
+
 // This function is called on click.
 export const startGame = _ => {
     gameDiv.innerHTML = createGameDiv()
+
+    gameDiv.innerHTML += createAttemptDiv(10)
+
     // gameDiv.innerHTML += createKeyboad | yields [object HTMLDivElement]
     let keyb = createKeyboard()
     keyb.addEventListener('click', (event) => {
