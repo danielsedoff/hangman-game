@@ -76,7 +76,8 @@ const doGoodGuess = (word, letter) => {
     });
 }
 
-const checkLetter = letter => {
+const checkLetter = keyElement => {
+    let letter = keyElement.id
     let word = sessionStorage.getItem('wordToGuess').toLowerCase()
     let goodGuess = word.includes(letter.toLowerCase())
 
@@ -84,6 +85,7 @@ const checkLetter = letter => {
         doBadGuess()
     } else {
         doGoodGuess(word, letter)
+        keyElement.disabled = true
     }
 }
 
@@ -103,7 +105,7 @@ export const startGame = _ => {
     let keyb = createKeyboard()
     keyb.addEventListener('click', event => {
         if (event.target.tagName.toLowerCase() !== 'button') return
-        checkLetter(event.target.id)
+        checkLetter(event.target)
     })
     gameDiv.appendChild(keyb)
 
