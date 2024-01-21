@@ -1,57 +1,9 @@
-import { WORDS, KEYBOARD_LETTERS } from './constants'
+import {createGameDiv, createKeyboard, createHangmanImg, createPlaceholders} from './createElements'
 
 const gameDiv = document.querySelectorAll('#game')[0]
 const LogoHeader = document.getElementById('logo')
 let attemptsLeft
 
-// Produce a pseudorandom integer in the given range
-const randomInt = (min, max) => {
-    let rand = min + Math.random() * (max + 1 - min)
-    return Math.floor(rand)
-}
-
-// Create the placeholders, these will be HTML elements.
-const createPlaceholders = str => {
-    let placeholders = Array.from('_'.repeat(str.length)).reduce(
-        (acc, curr, i) => {
-            return acc + `<h1 id="letter_${i}" class="letter">_</h1>`
-        },
-        ''
-    )
-    return `<div id="placeholders" class="placeholder-wrapper">${placeholders}</div>`
-}
-
-const createKeyboard = () => {
-    let keyboard = document.createElement('div')
-    keyboard.classList.add('keyboard')
-    keyboard.id = 'keyboard'
-
-    const keyboardHTML = KEYBOARD_LETTERS.reduce((acc, curr) => {
-        let button = `<button class="button-primary keyboard-button" id="${curr}">${curr}</button>`
-        return acc + button
-    }, '')
-
-    keyboard.innerHTML = keyboardHTML
-    return keyboard
-}
-
-// Assemble the whole Game div element from components.
-const createGameDiv = () => {
-    const randomIndex = randomInt(0, WORDS.length - 1)
-    const wordToGuess = WORDS[randomIndex]
-    sessionStorage.setItem('wordToGuess', wordToGuess)
-    return `<h1>${createPlaceholders(wordToGuess)}</h1>`
-}
-
-const createHangmanImg = hg => {
-    const hangmanImg = document.createElement('img')
-    hangmanImg.src = `images/hg-${hg}.png`
-    hangmanImg.alt = `hangman image ${hg}.png`
-    hangmanImg.id = 'hangman-img'
-    hangmanImg.classList.add('hangman-img')
-
-    return hangmanImg
-}
 
 const doBadGuess = () => {
     attemptsLeft -= 1
@@ -83,7 +35,6 @@ const doGoodGuess = (word, letter) => {
     });
 
     if(checkWin(word)) endGame('win')    
-
 }
 
 const checkLetter = keyElement => {
@@ -124,13 +75,11 @@ export const startGame = _ => {
 }
 
 const endGame = status => {
-
     document.getElementById('keyboard').style.display = 'none'
     document.getElementById('placeholders').remove()
 
     let resultHeader = document.createElement('h2')
     resultHeader.classList.add("result-header")
-
 
     if (status === 'win'){
         resultHeader.innerText = "You win!"
