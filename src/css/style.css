@@ -73,4 +73,13 @@
      .logo-sm {
         @apply text-xl
      }
+
+     .win {
+        color: rgb(101, 163, 13);
+        @apply text-3xl mt-5
+     }
+
+     .lose {
+        @apply text-red-600 text-3xl mt-5
+     }
 }
