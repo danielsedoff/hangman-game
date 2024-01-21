@@ -2,6 +2,7 @@ import { WORDS, KEYBOARD_LETTERS } from './constants'
 
 const gameDiv = document.querySelectorAll('#game')[0]
 const LogoHeader = document.getElementById('logo')
+let attemptsLeft
 
 // Produce a pseudorandom integer in the given range
 const randomInt = (min, max) => {
@@ -52,6 +53,40 @@ const createHangmanImg = hg => {
     return hangmanImg
 }
 
+const doBadGuess = () => {
+    attemptsLeft -= 1
+    let attemptsLeftElement = document.getElementById('attempts-left')
+    attemptsLeftElement.innerText = attemptsLeft
+
+    const pic = document.getElementById('hangman-img')
+    let imgNum = 10 - attemptsLeft
+    if (imgNum > 9){
+        let keyb = document.getElementById('keyboard')
+        keyb.style += '; display: none; '
+    }
+    pic.src = `images/hg-${imgNum}.png`
+}
+
+const doGoodGuess = (word, letter) => {
+    let wordArray = word.split('')
+    wordArray.forEach((curr, i) => {
+        if (curr.toLowerCase() === letter.toLowerCase()){
+            document.getElementById(`letter_${i}`).innerText = letter
+        }
+    });
+}
+
+const checkLetter = letter => {
+    let word = sessionStorage.getItem('wordToGuess').toLowerCase()
+    let goodGuess = word.includes(letter.toLowerCase())
+
+    if (!goodGuess) {
+        doBadGuess()
+    } else {
+        doGoodGuess(word, letter)
+    }
+}
+
 const createAttemptDiv = num => {
     return `<p id="attempts" class="mt-2">ATTEMPTS LEFT: <span id="attempts-left" class="font-medium text-red-600">${num}</span></p>`
 }
@@ -61,13 +96,14 @@ export const startGame = _ => {
     LogoHeader.classList.add('logo-sm')
 
     gameDiv.innerHTML = createGameDiv()
-
     gameDiv.innerHTML += createAttemptDiv(10)
+    attemptsLeft = 10
 
     // gameDiv.innerHTML += createKeyboad | yields [object HTMLDivElement]
     let keyb = createKeyboard()
     keyb.addEventListener('click', event => {
-        console.log(event.target.innerHTML)
+        if (event.target.tagName.toLowerCase() !== 'button') return
+        checkLetter(event.target.id)
     })
     gameDiv.appendChild(keyb)
 
