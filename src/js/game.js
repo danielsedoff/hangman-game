@@ -39,6 +39,16 @@ const createGameDiv = () => {
     return (`<h1>${createPlaceholders(wordToGuess)}</h1>`)
 }
 
+const createHangmanImg = (hg) => {
+    const hangmanImg = document.createElement('img')
+    hangmanImg.src = `images/hg-${hg}.png`
+    hangmanImg.alt = `hangman image ${hg}.png`
+    hangmanImg.id = 'hangman-img'
+    hangmanImg.classList.add('hangman-img')
+
+    return hangmanImg
+}
+
 const createAttemptDiv = (num) => {
     return `<p id="attempts" class="mt-2">ATTEMPTS LEFT: <span id="attempts-left" class="font-medium text-red-600">${num}</span></p>`
 }
@@ -55,4 +65,8 @@ export const startGame = _ => {
         console.log(event.target.innerHTML);
     })
     gameDiv.appendChild(keyb)
+
+
+    let hangmanImg = createHangmanImg(3)
+    gameDiv.appendChild(hangmanImg)
 }
