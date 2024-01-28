@@ -7,7 +7,7 @@ const randomInt = (min, max) => {
 }
 
 // Create the placeholders, these will be HTML elements.
-export const createPlaceholders = str => {
+const createPlaceholders = str => {
     let placeholders = Array.from('_'.repeat(str.length)).reduce(
         (acc, curr, i) => {
             return acc + `<h1 id="letter_${i}" class="letter">_</h1>`

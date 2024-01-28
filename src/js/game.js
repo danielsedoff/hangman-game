@@ -1,9 +1,12 @@
-import {createGameDiv, createKeyboard, createHangmanImg, createPlaceholders} from './createElements'
+import {createGameDiv, createKeyboard, createHangmanImg} from './createElements'
 
 const gameDiv = document.querySelectorAll('#game')[0]
 const LogoHeader = document.getElementById('logo')
 let attemptsLeft
 
+const quit = _ => {
+    endGame('quit')
+}
 
 const doBadGuess = () => {
     attemptsLeft -= 1
@@ -72,11 +75,15 @@ export const startGame = _ => {
 
     let hangmanImg = createHangmanImg(0)
     gameDiv.prepend(hangmanImg)
+
+    gameDiv.insertAdjacentHTML('beforeend', '<button id="quit" class="button-secondary">Quit</button>')
+    document.getElementById('quit').addEventListener('click', quit)
 }
 
 const endGame = status => {
     document.getElementById('keyboard').style.display = 'none'
     document.getElementById('placeholders').remove()
+    document.getElementById('quit').remove()
 
     let resultHeader = document.createElement('h2')
     resultHeader.classList.add("result-header")
@@ -85,9 +92,12 @@ const endGame = status => {
         resultHeader.innerText = "You win!"
         resultHeader.classList.add('win')
         document.getElementById('hangman-img').src = 'images/hg-win.png'
-    } else {
+    } else if (status === 'fail') {
         resultHeader.innerText = "You lose!"
         resultHeader.classList.add('lose')
+    } else if (status === 'quit'){
+        document.getElementById('hangman-img').remove()
+        document.getElementById('logo').classList.remove('logo-sm')
     }
 
     let restartButton = document.createElement('button')
