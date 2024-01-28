@@ -5,7 +5,8 @@ const LogoHeader = document.getElementById('logo')
 let attemptsLeft
 
 const quit = _ => {
-    endGame('quit')
+    let confirmation = confirm('Are you sure you want to quit?')
+    if (confirmation) endGame('quit')
 }
 
 const doBadGuess = () => {
